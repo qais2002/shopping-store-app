@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router';
 import apiUrl from '../../axios';
-import './products.css'
+import { Container, Row, Col } from 'react-bootstrap';
+import "./products.css"
 
 export default function Products({ match }) {
     const [products, setProducts] = useState(null);
@@ -14,7 +15,7 @@ export default function Products({ match }) {
             try {
                 const { data } = await apiUrl.get(`/products/${category}`);
                 setProducts(data);
-                // console.log(category, data);
+                console.log(category, data);
             } catch (err) {
                 console.log(err)
             }
@@ -29,18 +30,16 @@ export default function Products({ match }) {
 
     return (
         <>      
-            <div className="products-container">
-                { products && products.map((product) => (
-                        <div onClick={() => handleProduct(product._id, category)} className="product" key={product._id}>
-                            <img src={product.imageUrl} alt="product" />
-                            <div className="product-name">
-                                <h2>{product.name}</h2>
-                            </div>
-                            <span>${product.price}</span>
-                        </div>
-                    )
-                ) }
-            </div>
+            <Container fluid>
+                <Row  >
+                    { products && products.map((product) => (
+                        <Col xs={12} sm={6} md={6} lg={4} style={{ "padding": 10,  }} >
+                            <img src={product.imageUrl} />
+                            <h2>{product.name}</h2>
+                        </Col>
+                    )) }
+                </Row>
+            </Container>
         </>
     )
 }

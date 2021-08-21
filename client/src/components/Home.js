@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import apiUrl from "../axios"
 import Categories from "./categories/Categories"
-import Navbar from "./Navbar/Navbar"
+import NavBar from "./Navbar/Navbar"
 import "./home.css"
 
 export default function Home() {
@@ -26,17 +26,15 @@ export default function Home() {
 
     return (
         <>
-            <Navbar 
+            {/* <Navbar 
                 categories={categories}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
+            /> */}
+            <Categories
+                products={products}
+                categories={categories}
             />
-            <div className="container" >
-                <Categories
-                    products={products}
-                    categories={categories}
-                />
-            </div>
         </>
     )
 }

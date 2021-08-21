@@ -4,9 +4,10 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { AiFillHome } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs'
 import { useHistory } from 'react-router';
-import './navbar.css'
+import { Navbar, Nav, Container } from 'react-bootstrap'
+// import './navbar.css'
 
-export default function Navbar({ categories, selectedCategory, setSelectedCategory }) {
+export default function NavBar({ categories, selectedCategory, setSelectedCategory }) {
     const history = useHistory();
 
     const handleChange = () => {
@@ -19,23 +20,16 @@ export default function Navbar({ categories, selectedCategory, setSelectedCatego
 
 
     return (
-        <div className="navbar-container" >
-            <div className="fa-bar" >
-                <FaBars size= '25px' />
-                <AiFillHome size='25px' />
-            </div>
-            <div className="search-input" >
-                <select onChange={(e) => setSelectedCategory(e.target.value)} >
-                    { categories && categories.map((category) => (
-                        <option key={category} value={category} >{category}</option>
-                    )) }
-                </select>
-                <input type="text" />
-                <BsSearch className="fa-search" size= '30px' onClick={handleChange} />
-            </div>
-            <div className="cart" >
-                <AiOutlineShoppingCart className="ai-cart" size="30px" />
-            </div>
-        </div>
+        <Navbar bg="dark" variant="dark">
+        <Container>
+            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Nav className="me-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#features">Features</Nav.Link>
+                <Nav.Link href="#pricing">Pricing</Nav.Link>
+            </Nav>
+        </Container>
+      </Navbar>
+      
     )
 }
